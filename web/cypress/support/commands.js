@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("iniciarTestes", () => {
+Cypress.Commands.add("start", () => {
   // Define a resolução da tela para simular um monitor desktop padrão
   cy.viewport(1440, 900);
 
@@ -32,7 +32,7 @@ Cypress.Commands.add("iniciarTestes", () => {
   cy.visit("http://localhost:3000");
 });
 
-Cypress.Commands.add("submeterLogin", (email, password) => {
+Cypress.Commands.add("submitLoginForm", (email, password) => {
   // Busca o elemento input com id="email" e digita o email do usuário
   cy.get("#email").type(email);
   // Busca o elemento input com id="password" e digita a senha
@@ -42,4 +42,16 @@ Cypress.Commands.add("submeterLogin", (email, password) => {
   // Aqui procuramos um botão que contenha exatamente o texto "Entrar" e clicamos nele.
   // Isso é melhor que usar IDs genéricos ou inexistentes.
   cy.contains("button", "Entrar").click();
+});
+
+// Comando customizado de navegação. 
+// Evita código repetido e já embuti uma asserção de segurança.
+Cypress.Commands.add("goTo", (buttonName, pageTitle) => {
+  // Procura pelo botão contendo o texto passado.
+  // Boas Práticas (QA): O .should("be.visible") garante que o Cypress não vai clicar num elemento que o usuário real não estaria vendo.
+  cy.contains("button", buttonName).should("be.visible").click();
+  
+  // O Cypress é muito rápido. Se clicarmos e já tentarmos preencher um formulário na próxima tela, o teste pode quebrar se a tela demorar milissegundos a carregar.
+  // Por isso, validamos se o <h1> (Título da Página) apareceu antes de seguir adiante. Isso dá estabilidade ao teste!
+  cy.contains("h1", pageTitle).should("be.visible");
 });

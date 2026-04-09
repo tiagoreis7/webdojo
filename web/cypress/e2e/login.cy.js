@@ -2,8 +2,8 @@
 describe("Login", () => {
   // O comando 'it' (caso de teste) inicia um cenário de teste específico (um caso de uso isolado)
   it("Deve logar com sucesso", () => {
-    cy.iniciarTestes(); // Define a resolução da tela para simular um monitor desktop padrão e acessa a página principal da aplicação
-    cy.submeterLogin("papito@webdojo.com", "katana123"); // Busca o elemento input com id="email" e digita o email do usuário e busca o elemento input com id="password" e digita a senha
+    cy.start(); // Define a resolução da tela para simular um monitor desktop padrão e acessa a página principal da aplicação
+    cy.submitLoginForm("papito@webdojo.com", "katana123"); // Busca o elemento input com id="email" e digita o email do usuário e busca o elemento input com id="password" e digita a senha
 
     // cy.get() busca um elemento na tela através de um seletor CSS (aqui estamos usando um atributo de teste 'data-cy')
     cy.get('[data-cy="user-name"]')
@@ -21,16 +21,16 @@ describe("Login", () => {
   });
 
   it("Não deve logar com senha inválida", () => {
-    cy.iniciarTestes(); // Define a resolução da tela para simular um monitor desktop padrão e acessa a página principal da aplicação
-    cy.submeterLogin("papito@webdojo.com", "katana321"); // Busca o elemento input com id="email" e digita o email do usuário e busca o elemento input com id="password" e digita a senha
+    cy.start(); // Define a resolução da tela para simular um monitor desktop padrão e acessa a página principal da aplicação
+    cy.submitLoginForm("papito@webdojo.com", "katana321"); // Busca o elemento input com id="email" e digita o email do usuário e busca o elemento input com id="password" e digita a senha
 
     // cy.contains() busca um elemento visível na tela que contenha um texto específico, não sendo necessário conhecer o seu seletor
     cy.contains("Acesso negado! Tente novamente.").should("be.visible");
   });
 
   it("Não deve logar com email inválido", () => {
-    cy.iniciarTestes(); // Define a resolução da tela para simular um monitor desktop padrão e acessa a página principal da aplicação
-    cy.submeterLogin("404@webdojo.com", "katana123"); // Busca o elemento input com id="email" e digita o email do usuário e busca o elemento input com id="password" e digita a senha
+    cy.start(); // Define a resolução da tela para simular um monitor desktop padrão e acessa a página principal da aplicação
+    cy.submitLoginForm("404@webdojo.com", "katana123"); // Busca o elemento input com id="email" e digita o email do usuário e busca o elemento input com id="password" e digita a senha
 
     cy.contains("Acesso negado! Tente novamente.").should("be.visible"); // Verifica se o elemento está visível ao usuário
   });
