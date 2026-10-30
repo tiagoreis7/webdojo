@@ -1,0 +1,1 @@
+- [Documentar Estudos QA](documentar-estudos-qa.md) — Regra para sempre registrar novos aprendizados no Obsidian do qa-workspace.

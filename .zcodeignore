@@ -1,0 +1,18 @@
+# === PASTAS DE CONFIGURAÇÃO E IA (BLOQUEAR) ===
+.claude/
+.github/
+.vscode/
+.copilot/
+estudos-obsidian/.obsidian/
+estudos-obsidian/.trash/
+
+# === ARQUIVOS PESADOS DE SISTEMA E DEPENDÊNCIAS (BLOQUEAR) ===
+node_modules/
+dist/
+**/screenshots/
+package-lock.json
+yarn.lock
+**/debug.html
+
+# === ARQUIVOS DE HISTÓRICO QUE GERAM LOOP (BLOQUEAR) ===
+webdojoEestudos.code-workspace

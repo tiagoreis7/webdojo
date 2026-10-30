@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../qa-workspace"
+		}
+	],
+	"settings": {
+		"explorer.compactFolders": false
+	}
+}
